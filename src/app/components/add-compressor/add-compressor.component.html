@@ -1,0 +1,11 @@
+Nazwa <input type="text" #name> 
+<br>
+Wydajność [m3/kWh] <input type="number" #eeficiency>
+<br>
+Wydajność [m3/h] <input type="number" #heficiency>
+<br>
+Numer Seryjny <input type="text" #serialno>
+<br>
+Rok produkcji <input type="number" #year>
+<br>
+<button (click)="addCompressor(name.value, eeficiency.value, heficiency.value, serialno.value, year.value)">DODAJ</button>

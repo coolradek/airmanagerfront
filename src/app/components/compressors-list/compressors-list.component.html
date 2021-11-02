@@ -1,0 +1,53 @@
+<app-compressor-navbar></app-compressor-navbar>
+
+<div fxLayout fxLayoutAlign="center center">
+	<mat-form-field class="filter">
+	  <input matInput type="text" placeholder="Filtrowanie" #input (keyup)="searchRecord(input.value)">
+	</mat-form-field>
+  </div>
+
+
+	<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  
+	<!-- Id Column -->
+	<ng-container matColumnDef="compressorId">
+	  <th mat-header-cell *matHeaderCellDef> ID </th>
+	  <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+	</ng-container>
+  
+	<!-- Name Column -->
+	<ng-container matColumnDef="compressorName">
+	  <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+	  <td mat-cell *matCellDef="let element"> {{element.compressorName}} </td>
+	</ng-container>
+  
+   <!-- EE Column -->
+	<ng-container matColumnDef="energyEfficiency">
+	  <th mat-header-cell *matHeaderCellDef> Wydajność [m3/kWh] </th>
+	  <td mat-cell *matCellDef="let element"> {{element.energyEfficiency}} </td>
+	</ng-container>
+  
+       <!-- HE Column -->
+	<ng-container matColumnDef="hourEfficiency">
+        <th mat-header-cell *matHeaderCellDef> Wydajność [m3/h] </th>
+        <td mat-cell *matCellDef="let element"> {{element.hourEfficiency}} </td>
+      </ng-container>
+
+
+       <!-- Serial No Column -->
+	<ng-container matColumnDef="serialNumber">
+        <th mat-header-cell *matHeaderCellDef> Numer Fabryczny </th>
+        <td mat-cell *matCellDef="let element"> {{element.serialNumber}} </td>
+      </ng-container>
+
+
+         <!-- Year Column -->
+	<ng-container matColumnDef="yearOfManufacture">
+        <th mat-header-cell *matHeaderCellDef> Rok Produkcji </th>
+        <td mat-cell *matCellDef="let element"> {{element.yearOfManufacture}} </td>
+      </ng-container>
+
+	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
