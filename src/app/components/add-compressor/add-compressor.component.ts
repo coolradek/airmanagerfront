@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Compressor } from 'src/app/compressor';
+import { Compressor } from 'src/app/models/compressor';
 import { ClientService } from 'src/app/services/client.service';
 
 @Component({
@@ -27,7 +27,7 @@ export class AddCompressorComponent implements OnInit {
     this.newCompressor.yearOfManufacture = parseInt(year);
     this.client.addCompressor(this.newCompressor).subscribe(answer => {
         console.log(answer);
-        this.router.navigate(['']);
+        /**  this.router.navigate(['']); **/
     });
   }
 

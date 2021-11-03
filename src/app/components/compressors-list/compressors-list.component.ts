@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { AddCompressorComponent } from 'src/app/dialogs/add-compressor/add-compressor.component';
+import { EditCompressorComponent } from 'src/app/dialogs/edit-compressor/edit-compressor.component';
+import { ConfirmationDialogComponent } from 'src/app/dialogs/confirmation-dialog/confirmation-dialog.component';
 
 
 @Component({
@@ -10,11 +14,11 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class CompressorsListComponent implements OnInit {
 
-  displayedColumns: string[] = ['compressorId', 'compressorName', 'energyEfficiency', 'hourEfficiency', 'serialNumber', 'yearOfManufacture'];
+  displayedColumns: string[] = ['compressorId', 'compressorName', 'energyEfficiency', 'hourEfficiency', 'serialNumber', 'yearOfManufacture', 'actions'];
 
   dataSource = new MatTableDataSource([]);
 
-  constructor(private client: ClientService) { }
+  constructor(private client: ClientService, public dialog: MatDialog) { }
 
   ngOnInit(){
     this.fetchAll();
@@ -29,5 +33,49 @@ export class CompressorsListComponent implements OnInit {
 
   searchRecord(search = '') {
     this.dataSource.filter = search.toLowerCase().trim();
+  }
+
+  openAddDialog() {
+    const dialogRef = this.dialog.open(AddCompressorComponent, {
+      data:{
+        message: 'Czy na pewno usunąć?',
+        buttonText: {
+          ok: 'Potwierdź',
+          cancel: 'Anuluj'
+        }
+      }
+    })
+  }
+
+  openEditDialog() {
+    const dialogRef = this.dialog.open(EditCompressorComponent, {
+      data:{
+        message: 'Czy na pewno usunąć?',
+        buttonText: {
+          ok: 'Potwierdź',
+          cancel: 'Anuluj'
+        }
+      }
+    })
+  }
+
+  openDeleteDalog(i: number, id: number, name: string, serial: number) {
+
+    
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data:{
+        id: id,
+        name: name,
+        serial: serial,
+        message: 'Czy na pewno usunąć ',
+        buttonText: {
+          ok: 'Potwierdź',
+          cancel: 'Anuluj'
+        }
+      }      
+    });
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      console.log(confirmed)
+    })
   }
 }

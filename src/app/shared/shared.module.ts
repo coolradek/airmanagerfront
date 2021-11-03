@@ -14,7 +14,7 @@ import { MatChipsModule } from '@angular/material/chips'
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -32,7 +32,8 @@ import { MatInputModule } from '@angular/material/input';
     MatChipsModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -47,7 +48,8 @@ import { MatInputModule } from '@angular/material/input';
     MatChipsModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

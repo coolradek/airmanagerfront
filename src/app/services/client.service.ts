@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Compressor } from '../compressor';
+import { Compressor } from '../models/compressor';
 
 
 

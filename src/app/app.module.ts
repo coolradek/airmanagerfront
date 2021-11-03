@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FormsModule } from '@angular/forms';
+
 import { SharedModule } from './shared/shared.module';
 import { CompressorsListComponent } from './components/compressors-list/compressors-list.component';
 
@@ -12,8 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddCompressorComponent } from './components/add-compressor/add-compressor.component';
 import { CompressorDetailsComponent } from './components/compressor-details/compressor-details.component';
 
-import { MatDialogModule } from '@angular/material/dialog';
 import { CompressorNavbarComponent } from './components/compressor-navbar/compressor-navbar.component';
+import { EditCompressorComponent } from './dialogs/edit-compressor/edit-compressor.component';
+import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
@@ -22,15 +25,16 @@ import { CompressorNavbarComponent } from './components/compressor-navbar/compre
     CompressorsListComponent,
     AddCompressorComponent,
     CompressorDetailsComponent,
-    CompressorNavbarComponent
+    CompressorNavbarComponent,
+    EditCompressorComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    HttpClientModule,
-    MatDialogModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
