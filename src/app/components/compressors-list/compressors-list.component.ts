@@ -72,7 +72,7 @@ export class CompressorsListComponent implements OnInit {
         id: id,
         name: name,
         serial: serial,
-        message: 'Czy na pewno usunąć ',
+        message: 'Czy na pewno usunąć kompresor ' + name + ' o numerze seryjnym: ' + serial + " ?",
         buttonText: {
           ok: 'Potwierdź',
           cancel: 'Anuluj'
@@ -81,6 +81,12 @@ export class CompressorsListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       console.log(confirmed)
-    })
+      console.log(i)
+      console.log(id)
+      console.log(name)
+      this.client.deleteById(id).subscribe(() => {
+        this.fetchAll();
+      });
+    });
   }
 }

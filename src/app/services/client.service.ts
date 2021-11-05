@@ -27,4 +27,8 @@ export class ClientService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
     return this.http.post<Compressor>(this.baseUrl+'/add', newcompressor, httpOptions)
   }
+
+  deleteById(compressorId: number): Observable<any> {
+    return this.http.delete<any>(this.baseUrl+'/delete/'+ compressorId)
+  }
 }
