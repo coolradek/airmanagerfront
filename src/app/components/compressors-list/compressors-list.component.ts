@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddCompressorComponent } from 'src/app/dialogs/add-compressor/add-compressor.component';
 import { EditCompressorComponent } from 'src/app/dialogs/edit-compressor/edit-compressor.component';
 import { ConfirmationDialogComponent } from 'src/app/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -45,6 +46,10 @@ export class CompressorsListComponent implements OnInit {
         }
       }
     })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog result: ' + result );
+    })
   }
 
   openEditDialog() {
@@ -61,7 +66,7 @@ export class CompressorsListComponent implements OnInit {
 
   openDeleteDalog(i: number, id: number, name: string, serial: number) {
 
-    
+
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data:{
         id: id,

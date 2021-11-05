@@ -15,9 +15,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AddCompressorComponent } from '../dialogs/add-compressor/add-compressor.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    AddCompressorComponent
+  ],
   imports: [
     CommonModule,
     BrowserAnimationsModule,

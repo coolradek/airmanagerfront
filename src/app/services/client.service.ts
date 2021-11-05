@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Compressor } from '../models/compressor';
 
@@ -19,7 +19,12 @@ export class ClientService {
     return this.http.get<Compressor[]>(this.baseUrl+'/all');
   }
 
-  addCompressor(newcompressor: Compressor) {
-    return this.http.post(this.baseUrl+'/add', newcompressor)
+  getById(compressorId: number): Observable<Compressor> {
+    return this.http.get<Compressor>(this.baseUrl+'/'+compressorId)
+  }
+
+  addCompressor(newcompressor: Compressor): Observable<Compressor> {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
+    return this.http.post<Compressor>(this.baseUrl+'/add', newcompressor, httpOptions)
   }
 }

@@ -28,6 +28,7 @@ import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confi
     CompressorNavbarComponent,
     EditCompressorComponent,
     ConfirmationDialogComponent
+    
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,7 @@ import { ClientService } from 'src/app/services/client.service';
 })
 export class AddCompressorComponent {
 
-  constructor() { }
+  constructor(@Inject (MAT_DIALOG_DATA) public data: any) { }
 
 
 }
