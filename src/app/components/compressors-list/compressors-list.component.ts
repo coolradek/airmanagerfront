@@ -39,7 +39,7 @@ export class CompressorsListComponent implements OnInit {
   openAddDialog() {
     const dialogRef = this.dialog.open(AddCompressorComponent, {
       data:{
-        message: 'Czy na pewno usunąć?',
+        message: 'Dodaj Nowy Kompresor:',
         buttonText: {
           ok: 'Potwierdź',
           cancel: 'Anuluj'
@@ -50,6 +50,12 @@ export class CompressorsListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog result: ' + result );
     })
+  }
+
+  newCompressor: string = '';
+  newcompressor(event) {
+    this.newCompressor = event;
+    console.log(this.newCompressor);
   }
 
   openEditDialog() {

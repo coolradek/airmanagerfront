@@ -1,6 +1,24 @@
-<h2 mat-dialog-title>Dodaj Nowy Kompresor</h2>
+<h2 mat-dialog-title>{{message}}</h2>
 <mat-dialog-content>
-    <p>dialog works</p>
+    <mat-form-field  class="example-full-width">
+        <input matInput placeholder="Nazwa Kompresora...">
+    </mat-form-field>
+    <br>
+    <mat-form-field  class="example-full-width">
+        <input matInput placeholder="Wydajność [m3/kWh]...">
+    </mat-form-field>
+    <br>
+    <mat-form-field  class="example-full-width">
+        <input matInput placeholder="Wydajność [m3/h]...">
+    </mat-form-field>
+    <br>
+    <mat-form-field  class="example-full-width">
+        <input matInput placeholder="Numer Fabryczny...">
+    </mat-form-field>
+    <br>
+    <mat-form-field  class="example-full-width">
+        <input matInput placeholder="Rok Produkcji...">
+    </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close mat-dialog-close = 'true'>Zatwierdź</button>
