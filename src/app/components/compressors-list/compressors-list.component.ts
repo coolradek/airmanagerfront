@@ -6,6 +6,7 @@ import { AddCompressorComponent } from 'src/app/dialogs/add-compressor/add-compr
 import { EditCompressorComponent } from 'src/app/dialogs/edit-compressor/edit-compressor.component';
 import { ConfirmationDialogComponent } from 'src/app/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { ClassGetter } from '@angular/compiler/src/output/output_ast';
+import { Compressor } from 'src/app/models/compressor';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class CompressorsListComponent implements OnInit {
 
   dataSource = new MatTableDataSource([]);
 
+  selectedCompressor: Compressor = new Compressor();
+  
   constructor(private client: ClientService, public dialog: MatDialog) { }
 
   ngOnInit(){
@@ -37,6 +40,8 @@ export class CompressorsListComponent implements OnInit {
   }
 
   openAddDialog() {
+    this.selectedCompressor = {compressorId: '', compressorName: '', energyEfficiency: null, hourEfficiency: null, serialNumber: '', yearOfManufacture: null }
+    
     const dialogRef = this.dialog.open(AddCompressorComponent, {
       data:{
         message: 'Dodaj Nowy Kompresor:',
@@ -50,12 +55,6 @@ export class CompressorsListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog result: ' + result );
     })
-  }
-
-  newCompressor: string = '';
-  newcompressor(event) {
-    this.newCompressor = event;
-    console.log(this.newCompressor);
   }
 
   openEditDialog() {

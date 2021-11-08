@@ -1,4 +1,4 @@
-import { Component, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, Inject, Output, EventEmitter, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Compressor } from 'src/app/models/compressor';
 
@@ -10,14 +10,12 @@ import { Compressor } from 'src/app/models/compressor';
 })
 export class AddCompressorComponent {
 
+  @Input() compressor: Compressor = new Compressor;
+  @Output() compressorChange: EventEmitter<Compressor> = new EventEmitter<Compressor>();
+
   message: string = "Title"
   confirmButtonText: string = "Yes"
   cancelButtonText: string = "No"
-
-  nowykompresor: String;
-
-
-  @Output() newcompressor = new EventEmitter<String>();
 
   constructor(
     @Inject (MAT_DIALOG_DATA) public data: any,
@@ -29,18 +27,17 @@ export class AddCompressorComponent {
           this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
         }
       }
-      this.nowykompresor = 'Nazwa nowego kompresora'
     }
 
 onConfirmClick(): void {
 
-  this.eksport();
+  this.update();
 
   this.dialogRef.close(true);
 } 
 
-eksport() {
-  this.newcompressor.emit(this.nowykompresor);
+update() {
+  this.compressorChange.emit(this.compressor);
 }
 
 }

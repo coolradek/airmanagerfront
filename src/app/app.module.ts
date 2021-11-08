@@ -35,7 +35,8 @@ import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confi
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
