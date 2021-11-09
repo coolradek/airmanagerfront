@@ -17,6 +17,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddCompressorComponent } from '../dialogs/add-compressor/add-compressor.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AddCompressorComponent
@@ -36,7 +38,9 @@ import { AddCompressorComponent } from '../dialogs/add-compressor/add-compressor
     MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     BrowserAnimationsModule,

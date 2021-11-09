@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddCompressorComponent } from 'src/app/dialogs/add-compressor/add-compressor.component';
 import { EditCompressorComponent } from 'src/app/dialogs/edit-compressor/edit-compressor.component';
 import { ConfirmationDialogComponent } from 'src/app/dialogs/confirmation-dialog/confirmation-dialog.component';
-import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { Compressor } from 'src/app/models/compressor';
 
 
@@ -40,20 +39,46 @@ export class CompressorsListComponent implements OnInit {
   }
 
   openAddDialog() {
-    this.selectedCompressor = {compressorId: '', compressorName: '', energyEfficiency: null, hourEfficiency: null, serialNumber: '', yearOfManufacture: null }
-    
+    this.selectedCompressor = new Compressor;
+
     const dialogRef = this.dialog.open(AddCompressorComponent, {
       data:{
         message: 'Dodaj Nowy Kompresor:',
         buttonText: {
           ok: 'Potwierdź',
           cancel: 'Anuluj'
+        },
+        compressor: {
+          compressorId: this.selectedCompressor.compressorId,
+          compressorName: this.selectedCompressor.compressorName,
+          energyEfficiency: this.selectedCompressor.energyEfficiency,
+          hourEfficiency: this.selectedCompressor.hourEfficiency,
+          serialNumber: this.selectedCompressor.serialNumber,
+          yearOfManufacture: this.selectedCompressor.yearOfManufacture
         }
       }
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog result: ' + result );
+      
+      if(result != 'false') {
+        console.log('Dialog result (zatwierdź): ' + JSON.stringify(result) );
+
+        this.selectedCompressor.compressorName = result.compressor.compressorName;
+        this.selectedCompressor.energyEfficiency = result.compressor.energyEfficiency
+        this.selectedCompressor.hourEfficiency = result.compressor.hourEfficiency
+        this.selectedCompressor.serialNumber = result.compressor.serialNumber
+        this.selectedCompressor.yearOfManufacture = result.compressor.yearOfManufacture
+
+        this.client.addCompressor(this.selectedCompressor).subscribe(() => {
+          this.client.getAll().subscribe(value => {
+            this.dataSource.data = value;
+          });
+        });
+      }
+      else {
+        console.log('Dialog result (anuluj): ' + result );
+      }
     })
   }
 
@@ -91,7 +116,7 @@ export class CompressorsListComponent implements OnInit {
       console.log(name)
       this.client.deleteById(id).subscribe(() => {
         this.fetchAll();
-      });
+      })
     });
   }
 }

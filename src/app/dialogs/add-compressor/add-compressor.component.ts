@@ -1,7 +1,5 @@
-import { Component, Inject, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Compressor } from 'src/app/models/compressor';
-
 
 @Component({
   selector: 'app-add-compressor',
@@ -10,16 +8,16 @@ import { Compressor } from 'src/app/models/compressor';
 })
 export class AddCompressorComponent {
 
-  @Input() compressor: Compressor = new Compressor;
-  @Output() compressorChange: EventEmitter<Compressor> = new EventEmitter<Compressor>();
-
   message: string = "Title"
   confirmButtonText: string = "Yes"
   cancelButtonText: string = "No"
 
+  public currentValue: string = null;
+
   constructor(
     @Inject (MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<AddCompressorComponent>) {
+      console.log(data.compressor);
       if(data) {
         this.message = data.message || this.message;
         if(data.buttonText) {
@@ -29,15 +27,15 @@ export class AddCompressorComponent {
       }
     }
 
-onConfirmClick(): void {
+    cancelDialog() {
+      console.log('Cancelled !!!');
+    }
 
-  this.update();
-
-  this.dialogRef.close(true);
-} 
-
-update() {
-  this.compressorChange.emit(this.compressor);
-}
-
+    yesDialog() {
+      console.log(this.data.compressor.compressorName);
+      if(this.data.compressor.compressorName != undefined && this.data.compressor.compressorName != '') {
+        this.dialogRef.close(this.data)
+      }
+      
+    }
 }

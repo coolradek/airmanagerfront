@@ -1,26 +1,28 @@
 <h2 mat-dialog-title>{{message}}</h2>
 <mat-dialog-content>
     <mat-form-field  class="example-full-width">
-        <input matInput placeholder="Nazwa Kompresora...">
+        <input matInput placeholder="Nazwa Kompresora..." [(ngModel)]="data.compressor.compressorName">
     </mat-form-field>
     <br>
     <mat-form-field  class="example-full-width">
-        <input matInput placeholder="Wydajność [m3/kWh]...">
+        <input matInput placeholder="Wydajność [m3/kWh]..." [(ngModel)]="data.compressor.energyEfficiency">
     </mat-form-field>
     <br>
     <mat-form-field  class="example-full-width">
-        <input matInput placeholder="Wydajność [m3/h]...">
+        <input matInput placeholder="Wydajność [m3/h]..." [(ngModel)]="data.compressor.hourEfficiency" >
     </mat-form-field>
     <br>
     <mat-form-field  class="example-full-width">
-        <input matInput placeholder="Numer Fabryczny...">
+        <input matInput placeholder="Numer Fabryczny..." [(ngModel)]="data.compressor.serialNumber" >
     </mat-form-field>
     <br>
     <mat-form-field  class="example-full-width">
-        <input matInput placeholder="Rok Produkcji...">
+        <input matInput placeholder="Rok Produkcji..." [(ngModel)]="data.compressor.yearOfManufacture" >
     </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close mat-dialog-close = 'true'>Zatwierdź</button>
-    <button mat-button mat-dialog-close mat-dialog-close = 'false'>Anuluj</button>
+    <!--  <button mat-button mat-dialog-close [mat-dialog-close]="data">Zatwierdź</button> -->
+    <button mat-button (click)="yesDialog()" >Zatwierdź</button>
+    <button mat-button (click)="cancelDialog()" mat-dialog-close = 'false'>Anuluj</button>
+    
 </mat-dialog-actions>

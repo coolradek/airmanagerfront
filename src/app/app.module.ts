@@ -18,6 +18,8 @@ import { CompressorNavbarComponent } from './components/compressor-navbar/compre
 import { EditCompressorComponent } from './dialogs/edit-compressor/edit-compressor.component';
 import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confi
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
